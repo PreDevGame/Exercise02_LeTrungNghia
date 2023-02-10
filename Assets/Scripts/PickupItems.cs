@@ -7,11 +7,14 @@ public class PickupItems : MonoBehaviour
     public GameObject theRealGun;
     public GameObject theFakeGun;
     public AudioSource thePickupSound;
+    public static bool gotGun = false;
 
     void OnTriggerEnter(Collider other)
     {
-        Destroy(theFakeGun);
+        gotGun = true;
         thePickupSound.Play();
+        Destroy(theFakeGun);
         theRealGun.SetActive(true);
     }
+
 }
