@@ -6,6 +6,7 @@ public class LookatPlayer : MonoBehaviour
 {
     public Transform theMainPlayer;
 
+
     void Update()
     {
         transform.LookAt(theMainPlayer);

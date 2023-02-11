@@ -7,24 +7,35 @@ public class SoldierAI : MonoBehaviour
     public string hitTag;
     public bool lookingAtPlayer = false;
     public GameObject theSoldier;
+    public AudioSource fireSound;
+    public bool isFiring = false;
+    public float fireRate = 0.5f;
 
     void Update()
     {
         RaycastHit Hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, 15.0f))
         {
             hitTag = Hit.transform.tag;
         }
-        if (hitTag == "The Main Player")
+        if ((hitTag == "Player") && (isFiring == false))
         {
-            theSoldier.GetComponent<Animator>().Play("Firing");
-            lookingAtPlayer = true;
+            StartCoroutine(EnemyAuto());
+            isFiring = false;
         }
-        else
+        if (hitTag != "Player")
         {
             theSoldier.GetComponent<Animator>().Play("Standing");
             lookingAtPlayer = false;
         }
 
+    }
+    IEnumerator EnemyAuto()
+    {
+        isFiring = true;
+        theSoldier.GetComponent<Animator>().Play("Firing");
+        fireSound.Play();
+        lookingAtPlayer = true;
+        yield return new WaitForSeconds(fireRate);
     }
 }
