@@ -14,7 +14,7 @@ public class SoldierAI : MonoBehaviour
     void Update()
     {
         RaycastHit Hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, 15.0f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, 0.05f))
         {
             hitTag = Hit.transform.tag;
         }
@@ -32,12 +32,13 @@ public class SoldierAI : MonoBehaviour
     }
     IEnumerator EnemyAuto()
     {
-        lookingAtPlayer = true;
         isFiring = true;
+        lookingAtPlayer = true;
         theSoldier.GetComponent<Animator>().Play("Firing");
         yield return new WaitForSeconds(fireRate);
         fireSound.Play();
         yield return new WaitForSeconds(0.5f);
         isFiring = false;
+
     }
 }

@@ -8,10 +8,15 @@ public class AmmoPickup : MonoBehaviour
     public AudioSource thePickupSound;
     public AudioSource theGunLoad;
     public static bool pickupSucceced = false;
+    public AudioSource doorOpenSound;
+    public GameObject theLeftDoor;
+    public GameObject theRightDoor;
+    
 
     void OnTriggerEnter(Collider other)
     {
-        if(PickupItems.gotGun == true)
+
+        if (PickupItems.gotGun == true)
         {
             gotGun();
         }
@@ -19,6 +24,10 @@ public class AmmoPickup : MonoBehaviour
         {
             noGun();
         }
+        
+        doorOpenSound.Play();
+        theLeftDoor.GetComponent<Animator>().Play("LeftDoorOpen02");
+        theRightDoor.GetComponent<Animator>().Play("RightDoorOpen02");
     }
 
     void gotGun()
@@ -36,5 +45,6 @@ public class AmmoPickup : MonoBehaviour
         Destroy(theAmmoFake);
         GlobalAmmo.theAmmoValue += 10;
     }
+
 
 }
