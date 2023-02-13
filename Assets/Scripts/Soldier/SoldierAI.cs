@@ -11,8 +11,13 @@ public class SoldierAI : MonoBehaviour
     public AudioSource fireSound;
     public bool isFiring = false;
     public float fireRate = 1.5f;
-    public GameObject thePlayerBeingAttacked;
+    public GameObject beingAttacked;
+    public GameObject bloodBar;
 
+    void Start()
+    {
+        beingAttacked.SetActive(false);
+    }
     void Update()
     {
         RaycastHit Hit;
@@ -41,6 +46,10 @@ public class SoldierAI : MonoBehaviour
         fireSound.Play();
         yield return new WaitForSeconds(0.5f);
         GlobalBlood.healthValue -= 10;
+        beingAttacked.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        beingAttacked.SetActive(false);
+        bloodBar.GetComponent<RectTransform>().offsetMin -= new Vector2(-10, 0);
         isFiring = false;
 
     }
