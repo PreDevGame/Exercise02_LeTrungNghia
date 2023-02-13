@@ -9,7 +9,7 @@ public class SoldierAI : MonoBehaviour
     public GameObject theSoldier;
     public AudioSource fireSound;
     public bool isFiring = false;
-    public float fireRate = 0.5f;
+    public float fireRate = 1.5f;
 
     void Update()
     {
@@ -21,7 +21,7 @@ public class SoldierAI : MonoBehaviour
         if ((hitTag == "Player") && (isFiring == false))
         {
             StartCoroutine(EnemyAuto());
-            isFiring = false;
+ 
         }
         if (hitTag != "Player")
         {
@@ -32,10 +32,12 @@ public class SoldierAI : MonoBehaviour
     }
     IEnumerator EnemyAuto()
     {
+        lookingAtPlayer = true;
         isFiring = true;
         theSoldier.GetComponent<Animator>().Play("Firing");
-        fireSound.Play();
-        lookingAtPlayer = true;
         yield return new WaitForSeconds(fireRate);
+        fireSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        isFiring = false;
     }
 }
