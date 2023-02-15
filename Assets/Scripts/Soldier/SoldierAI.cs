@@ -10,25 +10,32 @@ public class SoldierAI : MonoBehaviour
     public GameObject theSoldier;
     public AudioSource fireSound;
     public bool isFiring = false;
-    public float fireRate = 1.5f;
-    public GameObject beingAttacked;
+    public float fireRate = 0.025f;
+    public GameObject bloodLoss;
     public GameObject bloodBar;
+
 
     void Start()
     {
-        beingAttacked.SetActive(false);
+       bloodLoss.SetActive(false);
     }
     void Update()
     {
         RaycastHit Hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit))
         {
-            hitTag = Hit.transform.tag;
+           hitTag = Hit.transform.tag;
         }
         if ((hitTag == "Player") && (isFiring == false))
         {
-            StartCoroutine(EnemyAuto());
-
+            if (GlobalBlood.healthValue > 0)
+            {
+                StartCoroutine(EnemyAuto());
+            }
+            if (GlobalBlood.healthValue <= 0)
+            {
+                theSoldier.GetComponent<Animator>().Play("Standing");
+            }
         }
         if (hitTag != "Player")
         {
@@ -41,15 +48,14 @@ public class SoldierAI : MonoBehaviour
     {
         isFiring = true;
         lookingAtPlayer = true;
+        fireSound.Play();
+        bloodLoss.SetActive(true);
+        yield return new WaitForSeconds(0.025f);
+        bloodLoss.SetActive(false);
+        GlobalBlood.healthValue -= 20;
+        bloodBar.GetComponent<RectTransform>().offsetMin += new Vector2(70, 0);
         theSoldier.GetComponent<Animator>().Play("Firing");
         yield return new WaitForSeconds(fireRate);
-        fireSound.Play();
-        yield return new WaitForSeconds(0.5f);
-        GlobalBlood.healthValue -= 10;
-        beingAttacked.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        beingAttacked.SetActive(false);
-        bloodBar.GetComponent<RectTransform>().offsetMin -= new Vector2(-10, 0);
         isFiring = false;
 
     }
