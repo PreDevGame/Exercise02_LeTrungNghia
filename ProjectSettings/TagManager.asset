@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - The Main Player
+  - Soldier
   layers:
   - Default
   - TransparentFX

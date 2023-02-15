@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class SoldierAI : MonoBehaviour
 {
     public string hitTag;
@@ -11,13 +12,15 @@ public class SoldierAI : MonoBehaviour
     public AudioSource fireSound;
     public bool isFiring = false;
     public float fireRate = 0.025f;
-    public GameObject bloodLoss;
-    public GameObject bloodBar;
+    public GameObject bloodPlayerLoss;
+    public GameObject bloodPlayerBar;
+    public static int healthSoldier;
 
 
     void Start()
     {
-       bloodLoss.SetActive(false);
+        healthSoldier = 100;
+        bloodPlayerLoss.SetActive(false);
     }
     void Update()
     {
@@ -49,14 +52,13 @@ public class SoldierAI : MonoBehaviour
         isFiring = true;
         lookingAtPlayer = true;
         fireSound.Play();
-        bloodLoss.SetActive(true);
-        yield return new WaitForSeconds(0.025f);
-        bloodLoss.SetActive(false);
+        bloodPlayerLoss.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        bloodPlayerLoss.SetActive(false);
         GlobalBlood.healthValue -= 20;
-        bloodBar.GetComponent<RectTransform>().offsetMin += new Vector2(70, 0);
+        bloodPlayerBar.GetComponent<RectTransform>().offsetMin += new Vector2(70, 0);
         theSoldier.GetComponent<Animator>().Play("Firing");
         yield return new WaitForSeconds(fireRate);
         isFiring = false;
-
     }
 }
