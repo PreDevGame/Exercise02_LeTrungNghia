@@ -14,12 +14,10 @@ public class SoldierAI : MonoBehaviour
     public float fireRate = 0.025f;
     public GameObject bloodPlayerLoss;
     public GameObject bloodPlayerBar;
-    public static int healthSoldier;
 
 
     void Start()
     {
-        healthSoldier = 100;
         bloodPlayerLoss.SetActive(false);
     }
     void Update()
