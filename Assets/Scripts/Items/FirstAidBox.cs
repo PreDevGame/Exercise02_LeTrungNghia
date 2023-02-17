@@ -11,13 +11,23 @@ public class FirstAidBox : MonoBehaviour
     public GameObject theLeftDoor;
     public GameObject theRightDoor;
     public AudioSource theDoorSound;
+    public int currentBlood;
 
     void OnTriggerEnter(Collider other)
     {
         Destroy(theBox);
         GlobalBlood.healthValue += 50;
+        currentBlood = GlobalBlood.healthValue;
         increaseBloodSound.Play();
-        bloodBar.GetComponent<RectTransform>().offsetMin -= new Vector2(150, 0);
+        if (currentBlood >= 100)
+        {
+            bloodBar.GetComponent<RectTransform>().offsetMin = new Vector2(100, -440);
+            bloodBar.GetComponent<RectTransform>().offsetMax = new Vector2(337, -520);
+        }
+        else
+        {
+            bloodBar.GetComponent<RectTransform>().offsetMin -= new Vector2(150, 0);
+        }
         theLeftDoor.GetComponent<Animator>().Play("LeftDoorOpen");
         theRightDoor.GetComponent<Animator>().Play("RightDoorOpen");
         theDoorSound.Play();

@@ -14,7 +14,9 @@ public class GunFire : MonoBehaviour
     public static bool soldierBloodLoss = false;
     public GameObject bloodSoldierBar;
     public GameObject theSoldier;
-    public GameObject firstAidBox01;
+    public GameObject firstAidBox;
+    public GameObject giftBox;
+    public static int theSoliderKilled = 4;
 
     void Update()
     {
@@ -39,9 +41,11 @@ public class GunFire : MonoBehaviour
                         if(bloodSoldierBar.GetComponent<Image>().fillAmount == 0)
                         {
                             Destroy(theSoldier);
-                            firstAidBox01.SetActive(true);
-                        }
+                            theSoliderKilled -= 1;
+                            firstAidBox.SetActive(true);
+                            giftBox.SetActive(true);
 
+                        }
                     }
                 }
 
