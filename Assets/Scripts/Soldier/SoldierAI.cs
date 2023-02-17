@@ -53,6 +53,7 @@ public class SoldierAI : MonoBehaviour
         bloodPlayerLoss.SetActive(true);
         yield return new WaitForSeconds(0.05f);
         bloodPlayerLoss.SetActive(false);
+        GlobalBlood.healthValue -= 20;
         bloodPlayerBar.GetComponent<RectTransform>().offsetMin += new Vector2(70, 0);
         theSoldier.GetComponent<Animator>().Play("Firing");
         yield return new WaitForSeconds(fireRate);

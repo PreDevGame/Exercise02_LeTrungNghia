@@ -12,10 +12,13 @@ public class GunFire : MonoBehaviour
     public bool isFiring = false;
     public string soldierTag;
     public static bool soldierBloodLoss = false;
-    public GameObject bloodSoldierBar;
-    public GameObject theSoldier;
-    public GameObject firstAidBox;
-    public GameObject giftBox;
+    public GameObject bloodSoldierBar1;
+    public GameObject theSoldier1;
+    public GameObject bloodSoldierBar2;
+    public GameObject theSoldier2;
+    public GameObject firstAidBox1;
+    public GameObject giftBox1;
+    public GameObject giftBox2;
     public static int theSoliderKilled = 4;
 
     void Update()
@@ -33,17 +36,30 @@ public class GunFire : MonoBehaviour
                 if (isFiring == false)
                 {
                     StartCoroutine(firingHandGun());
-                    if(soldierTag == "Soldier")
+                    if(soldierTag == "Soldier1")
                     {
                         soldierBloodLoss = true;
                         Debug.Log(" Da Ban Trung ");
-                        bloodSoldierBar.GetComponent<Image>().fillAmount -= 0.5f;
-                        if(bloodSoldierBar.GetComponent<Image>().fillAmount == 0)
+                        bloodSoldierBar1.GetComponent<Image>().fillAmount -= 0.5f;
+                        if(bloodSoldierBar1.GetComponent<Image>().fillAmount == 0)
                         {
-                            Destroy(theSoldier);
+                            Destroy(theSoldier1);
                             theSoliderKilled -= 1;
-                            firstAidBox.SetActive(true);
-                            giftBox.SetActive(true);
+                            firstAidBox1.SetActive(true);
+                            giftBox1.SetActive(true);
+
+                        }
+                    }
+                    if (soldierTag == "Soldier2")
+                    {
+                        soldierBloodLoss = true;
+                        Debug.Log(" Da Ban Trung ");
+                        bloodSoldierBar2.GetComponent<Image>().fillAmount -= 0.5f;
+                        if (bloodSoldierBar2.GetComponent<Image>().fillAmount == 0)
+                        {
+                            Destroy(theSoldier2);
+                            theSoliderKilled -= 1;
+                            giftBox2.SetActive(true);
 
                         }
                     }
