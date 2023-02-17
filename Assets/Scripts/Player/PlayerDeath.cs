@@ -13,6 +13,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if(GlobalBlood.healthValue == 0)
         {
+            GunFire.theSoliderKilled = 4;
             StartCoroutine(gameOver());
         }
     }

@@ -6,11 +6,23 @@ using UnityEngine.UI;
 public class ScoreUI : MonoBehaviour
 {
     public GameObject theScoreText;
-    public int theCurrentScore;
+    public static int theCurrentScore;
 
-    void Update()
+    void Start()
     {
-        theCurrentScore = GiftPickup.theScoreValue;
+        theCurrentScore = 0;
+    }
+    void LateUpdate()
+    {
+        if(GunFire.theSoliderKilled == 4)
+        {
+            theCurrentScore = 0;
+        }
+        else
+        {
+            theCurrentScore = GiftPickup.theScoreValue;
+        }
+        
         Debug.LogWarning(theCurrentScore);
         theScoreText.GetComponent<Text>().text = "" + theCurrentScore;
     }
