@@ -14,6 +14,8 @@ public class PlayerDeath : MonoBehaviour
         if(GlobalBlood.healthValue == 0)
         {
             GunFire.theSoliderKilled = 4;
+            ScoreUI.theCurrentScore = 0;
+            GlobalAmmo.theAmmoValue = 0;
             StartCoroutine(gameOver());
         }
     }

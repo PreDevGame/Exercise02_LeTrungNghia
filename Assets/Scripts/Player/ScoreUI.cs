@@ -22,8 +22,6 @@ public class ScoreUI : MonoBehaviour
         {
             theCurrentScore = GiftPickup.theScoreValue;
         }
-        
-        Debug.LogWarning(theCurrentScore);
         theScoreText.GetComponent<Text>().text = "" + theCurrentScore;
     }
 }

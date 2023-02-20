@@ -12,18 +12,25 @@ public class GunFire : MonoBehaviour
     public bool isFiring = false;
     public string soldierTag;
     public static bool soldierBloodLoss = false;
+
     public GameObject bloodSoldierBar1;
     public GameObject theSoldier1;
     public GameObject bloodSoldierBar2;
     public GameObject theSoldier2;
     public GameObject bloodSoliderBar3;
     public GameObject theSoldier3;
+    public GameObject bloodSoliderBar4;
+    public GameObject theSoldier4;
+
     public GameObject firstAidBox1;
     public GameObject giftBox1;
     public GameObject giftBox2;
-    public static int theSoliderKilled = 4;
+    public GameObject giftBox3;
     public GameObject theKey3;
     public GameObject theKey4;
+    public GameObject theKey5;
+
+    public static int theSoliderKilled = 4;
 
     void Update()
     {
@@ -40,12 +47,11 @@ public class GunFire : MonoBehaviour
                 if (isFiring == false)
                 {
                     StartCoroutine(firingHandGun());
-                    if(soldierTag == "Soldier1")
+                    if (soldierTag == "Soldier1")
                     {
                         soldierBloodLoss = true;
-                        Debug.Log(" Da Ban Trung ");
                         bloodSoldierBar1.GetComponent<Image>().fillAmount -= 0.5f;
-                        if(bloodSoldierBar1.GetComponent<Image>().fillAmount == 0)
+                        if (bloodSoldierBar1.GetComponent<Image>().fillAmount == 0)
                         {
                             Destroy(theSoldier1);
                             theSoliderKilled -= 1;
@@ -58,7 +64,6 @@ public class GunFire : MonoBehaviour
                     if (soldierTag == "Soldier2")
                     {
                         soldierBloodLoss = true;
-                        Debug.Log(" Da Ban Trung ");
                         bloodSoldierBar2.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoldierBar2.GetComponent<Image>().fillAmount == 0)
                         {
@@ -72,18 +77,26 @@ public class GunFire : MonoBehaviour
                     if (soldierTag == "Soldier3")
                     {
                         soldierBloodLoss = true;
-                        Debug.Log(" Da Ban Trung ");
                         bloodSoliderBar3.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoliderBar3.GetComponent<Image>().fillAmount == 0)
                         {
                             Destroy(theSoldier3);
                             theSoliderKilled -= 1;
-                            giftBox2.SetActive(true);
-
+                            giftBox3.SetActive(true);
+                        }
+                    }
+                    if (soldierTag == "Soldier4")
+                    {
+                        soldierBloodLoss = true;
+                        bloodSoliderBar4.GetComponent<Image>().fillAmount -= 0.5f;
+                        if (bloodSoliderBar4.GetComponent<Image>().fillAmount == 0)
+                        {
+                            Destroy(theSoldier4);
+                            theSoliderKilled -= 1;
+                            theKey5.SetActive(true);
                         }
                     }
                 }
-
             }
             else
             {
