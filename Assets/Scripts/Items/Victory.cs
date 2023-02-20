@@ -11,6 +11,7 @@ public class Victory : MonoBehaviour
     public AudioSource victorySound;
     public GameObject theRobot;
     public GameObject vicoryPannel;
+    public GameObject totalScorePannel;
 
     void OnTriggerEnter(Collider other)
     {
@@ -26,7 +27,7 @@ public class Victory : MonoBehaviour
         yield return new WaitForSeconds(1);
         treasureSound.Play();
         theTreasure.GetComponent<Animator>().Play("ArmatureAction");
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
         treasureSound.Pause();
         theBook.SetActive(true);
         theBook.GetComponent<Animator>().Play("Go out");
@@ -35,7 +36,10 @@ public class Victory : MonoBehaviour
         victorySound.Play();
         theRobot.SetActive(true);
         vicoryPannel.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
+        vicoryPannel.SetActive(false);
+        totalScorePannel.SetActive(true);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(1);
 
     }
