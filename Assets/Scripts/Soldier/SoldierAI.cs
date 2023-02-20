@@ -12,7 +12,7 @@ public class SoldierAI : MonoBehaviour
     public AudioSource fireSound;
     public bool isFiring = false;
     public float fireRate = 0.025f;
-    public GameObject bloodPlayerLoss;
+    public static GameObject bloodPlayerLoss;
     public GameObject bloodPlayerBar;
 
 

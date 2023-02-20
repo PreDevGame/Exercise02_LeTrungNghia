@@ -53,6 +53,7 @@ public class GunFire : MonoBehaviour
                         bloodSoldierBar1.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoldierBar1.GetComponent<Image>().fillAmount == 0)
                         {
+                            SoldierAI.bloodPlayerLoss.SetActive(false);
                             Destroy(theSoldier1);
                             theSoliderKilled -= 1;
                             firstAidBox1.SetActive(true);
@@ -67,6 +68,7 @@ public class GunFire : MonoBehaviour
                         bloodSoldierBar2.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoldierBar2.GetComponent<Image>().fillAmount == 0)
                         {
+                            SoldierAI.bloodPlayerLoss.SetActive(false);
                             Destroy(theSoldier2);
                             theSoliderKilled -= 1;
                             giftBox2.SetActive(true);
@@ -80,6 +82,7 @@ public class GunFire : MonoBehaviour
                         bloodSoliderBar3.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoliderBar3.GetComponent<Image>().fillAmount == 0)
                         {
+                            SoldierAI.bloodPlayerLoss.SetActive(false);
                             Destroy(theSoldier3);
                             theSoliderKilled -= 1;
                             giftBox3.SetActive(true);
@@ -91,6 +94,7 @@ public class GunFire : MonoBehaviour
                         bloodSoliderBar4.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoliderBar4.GetComponent<Image>().fillAmount == 0)
                         {
+                            SoldierAI.bloodPlayerLoss.SetActive(false);
                             Destroy(theSoldier4);
                             theSoliderKilled -= 1;
                             theKey5.SetActive(true);
