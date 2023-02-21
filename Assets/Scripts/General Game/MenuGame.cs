@@ -22,8 +22,6 @@ public class MenuGame : MonoBehaviour
     IEnumerator NewGame()
     {
         clickSound.Play();
-        StarterAssets.StarterAssetsInputs.cursorLocked = true;
-        StarterAssets.StarterAssetsInputs.cursorInputForLook = true;
         yield return new WaitForSeconds(2);
         fakeOut.SetActive(true);
         SceneManager.LoadScene(0);

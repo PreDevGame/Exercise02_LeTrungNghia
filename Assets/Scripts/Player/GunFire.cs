@@ -9,9 +9,11 @@ public class GunFire : MonoBehaviour
     public GameObject muzzelFlash;
     public AudioSource gunFire;
     public AudioSource NoAnyAmmo;
+    public AudioSource soldierFallSound;
     public bool isFiring = false;
     public string soldierTag;
-    public static bool soldierBloodLoss = false;
+    public bool soldierBloodLoss = false;
+    public GameObject playerBloodLoss;
 
     public GameObject bloodSoldierBar1;
     public GameObject theSoldier1;
@@ -53,12 +55,13 @@ public class GunFire : MonoBehaviour
                         bloodSoldierBar1.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoldierBar1.GetComponent<Image>().fillAmount == 0)
                         {
-                            SoldierAI.bloodPlayerLoss.SetActive(false);
+                            soldierFallSound.Play();
                             Destroy(theSoldier1);
                             theSoliderKilled -= 1;
                             firstAidBox1.SetActive(true);
                             giftBox1.SetActive(true);
                             theKey3.SetActive(true);
+                            playerBloodLoss.SetActive(false);
 
                         }
                     }
@@ -68,11 +71,12 @@ public class GunFire : MonoBehaviour
                         bloodSoldierBar2.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoldierBar2.GetComponent<Image>().fillAmount == 0)
                         {
-                            SoldierAI.bloodPlayerLoss.SetActive(false);
+                            soldierFallSound.Play();
                             Destroy(theSoldier2);
                             theSoliderKilled -= 1;
                             giftBox2.SetActive(true);
                             theKey4.SetActive(true);
+                            playerBloodLoss.SetActive(false);
 
                         }
                     }
@@ -82,10 +86,11 @@ public class GunFire : MonoBehaviour
                         bloodSoliderBar3.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoliderBar3.GetComponent<Image>().fillAmount == 0)
                         {
-                            SoldierAI.bloodPlayerLoss.SetActive(false);
+                            soldierFallSound.Play();
                             Destroy(theSoldier3);
                             theSoliderKilled -= 1;
                             giftBox3.SetActive(true);
+                            playerBloodLoss.SetActive(false);
                         }
                     }
                     if (soldierTag == "Soldier4")
@@ -94,10 +99,11 @@ public class GunFire : MonoBehaviour
                         bloodSoliderBar4.GetComponent<Image>().fillAmount -= 0.5f;
                         if (bloodSoliderBar4.GetComponent<Image>().fillAmount == 0)
                         {
-                            SoldierAI.bloodPlayerLoss.SetActive(false);
+                            soldierFallSound.Play();
                             Destroy(theSoldier4);
                             theSoliderKilled -= 1;
                             theKey5.SetActive(true);
+                            playerBloodLoss.SetActive(false);
                         }
                     }
                 }

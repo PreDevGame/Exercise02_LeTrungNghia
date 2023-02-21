@@ -6,7 +6,10 @@ public class Tutor1 : MonoBehaviour
 {
     public GameObject theRobot;
     public AudioSource robotVoice;
-    public GameObject pannelTutor1;
+    public GameObject pannelTutor;
+    public GameObject text0;
+    public GameObject text1;
+    public GameObject text2;
     public GameObject theStartTrigger;
 
     void OnTriggerEnter(Collider other)
@@ -19,13 +22,19 @@ public class Tutor1 : MonoBehaviour
     {
         theRobot.SetActive(true);
         robotVoice.Play();
-        pannelTutor1.SetActive(true);
-        yield return new WaitForSeconds(8);
+        pannelTutor.SetActive(true);
+        text0.SetActive(true);
+        yield return new WaitForSeconds(2);
+        text0.SetActive(false);
+        text1.SetActive(true);
+        yield return new WaitForSeconds(4);
+        text1.SetActive(false);
+        text2.SetActive(true);
+        yield return new WaitForSeconds(3);
+        text2.SetActive(false);
+        pannelTutor.SetActive(false);
         Destroy(theStartTrigger);
-        pannelTutor1.SetActive(false);
         theRobot.SetActive(false);
         robotVoice.Pause();
-
-
     }
 }

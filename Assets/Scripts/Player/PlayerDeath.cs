@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public AudioSource playerDeathSound;
     public AudioSource GameOverSound;
     public GameObject gameOverUI;
 
@@ -13,22 +12,17 @@ public class PlayerDeath : MonoBehaviour
     {
         if(GlobalBlood.healthValue == 0)
         {
+            StartCoroutine(gameOver());
             GunFire.theSoliderKilled = 4;
             ScoreUI.theCurrentScore = 0;
             GlobalAmmo.theAmmoValue = 0;
-            StartCoroutine(gameOver());
         }
     }
 
     IEnumerator gameOver()
     {
-        yield return new WaitForSeconds(1);
-        playerDeathSound.Play();
-        //yield return new WaitForSeconds(0.25f);
-        //GameOverSound.Play();
-        //yield return new WaitForSeconds(0.25f);
+        GameOverSound.Play();
         gameOverUI.SetActive(true);
-        gameOverUI.GetComponent<Animator>().Play("GameOver");
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(0);
 

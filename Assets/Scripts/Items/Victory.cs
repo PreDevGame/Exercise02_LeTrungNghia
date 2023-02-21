@@ -31,7 +31,7 @@ public class Victory : MonoBehaviour
         treasureSound.Pause();
         theBook.SetActive(true);
         theBook.GetComponent<Animator>().Play("Go out");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         theBook.GetComponent<Animator>().Play("Take 01");
         victorySound.Play();
         theRobot.SetActive(true);
